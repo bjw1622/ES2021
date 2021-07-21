@@ -14,11 +14,18 @@
 
     <script>
       const number = parseInt(prompt("몇 명이 참가하나요?"));
-      console.log(number);
-      console.log(typeof number);
       alert(number);
-      const yesOrNo = confirm("정답이 맞나요?");
-      alert(yesOrNo);
+      const yesOrNo = confirm(`맞나요?`);
+
+      document
+        .querySelector(`input`)
+        .addEventListener("input", function (event) {
+          console.log("글자 입력", event.target.value);
+        });
+      const onclick = function () {
+        console.log("버튼 클릭");
+      };
+      document.querySelector("button").addEventListener("click", onclick);
     </script>
   </body>
 </html>
