@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>쿵쿵따 게임</title>
+    <link rel="stylesheet" href="kongtta.css" />
+  </head>
+  <body>
+    <div><span id="order">1</span>번째 참가자</div>
+    <div>쿵쿵따 단어:<span id="word"></span></div>
+    <div id="input"></div>
+    <input type="text" />
+    <button>쿵쿵따 입력</button>
+
+    <script>
+      const number = parseInt(prompt("몇 명이 참여하나요?"));
+      if (number) {
+        const $order = document.querySelector("#order");
+        const $input = document.querySelector("input");
+        const $button = document.querySelector("button");
+        const $word = document.querySelector("#word");
+        //입력되는 단어
+        let word;
+
+        const onInput = function (event) {
+          //입력되는 단어
+          word = event.target.value;
+        };
+        const onClick = function () {
+          if (word.length === 3) {
+            $word.textContent = word;
+            console.log(word);
+          } else {
+            alert("다시 입력하세요");
+          }
+        };
+        $input.addEventListener("input", onInput);
+        $button.addEventListener("click", onClick);
+      } else {
+        alert("게임이 종료 되었습니다.");
+      }
+    </script>
+  </body>
+</html>
