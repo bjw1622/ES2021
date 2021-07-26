@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>숫자야구</title>
+  </head>
+  <body>
+    <form id="form">
+      <input type="text" id="input" />
+      <button>확인</button>
+    </form>
+    <div id="logs"></div>
+    <script>
+      const $form = document.querySelector("#form");
+      const $input = document.querySelector("#input");
+      const $logs = document.querySelector("#logs");
+
+      //1부터 9까지 숫자 생성.
+      const numbers = [];
+      for (let i = 0; i < 9; i++) {
+        numbers.push(i + 1);
+      }
+      console.log(numbers);
+      //무작위 숫자 생성
+      const randoms = [];
+      for (let i = 0; i < 4; i++) {
+        let index = parseInt(Math.random() * numbers.length);
+        randoms.push(numbers[index]);
+        numbers.splice(index, 1);
+      }
+      console.log(randoms);
+
+      const tries = [];
+
+      function checkInput(input) {
+        if (input.length !== 4) {
+          return alert("4자리 숫자를 입력해 주세요.");
+        } else if (new Set(input).size !== 4) {
+          // new Set => 중복이 없는 배열
+          return alert("중복되지 않게 입력해 주세요.");
+        } else if (tries.includes(input)) {
+          //tries 배열에 저장.
+          return alert("같은 수를 입력했습니다.다른 수를 입력해주세요.");
+        }
+        return true;
+      }
+      $form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const value = $input.value;
+        $input.value = "";
+        const valid = checkInput(value);
+      });
+    </script>
+  </body>
+</html>
