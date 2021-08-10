@@ -25,6 +25,10 @@
   <body>
     <div id="result">추첨 결과는?</div>
     <div id="bonus">보너스:</div>
+    <div>당신의 번호: <input id="your"></input>
+        <button id="btn">제출</button>
+    </div>
+    <div><button id="correct">정답 확인</button></div>
     <script>
       const candidate = Array(45)
         .fill()
@@ -38,12 +42,10 @@
         const value = spliceArray[0];
         shuffle.push(value);
       }
-      console.log(shuffle);
 
       const winBalls = shuffle.slice(0, 7).sort((a, b) => a - b);
       console.log(winBalls);
       const bonus = winBalls[6];
-      console.log(bonus);
 
       function view(component, index, time) {
         setTimeout(() => {
@@ -52,12 +54,15 @@
           $ball.textContent = `${winBalls[index]}`;
           if (winBalls[index] < 10) {
             $ball.style.backgroundColor = "red";
+            $ball.style.color = "white";
           } else if (winBalls[index] < 20) {
             $ball.style.backgroundColor = "orange";
+            $ball.style.color = "white";
           } else if (winBalls[index] < 30) {
             $ball.style.backgroundColor = "yellow";
           } else if (winBalls[index] < 40) {
             $ball.style.backgroundColor = "blue";
+            $ball.style.color = "white";
           } else {
             $ball.style.backgroundColor = "green";
             $ball.style.color = "white";
@@ -75,6 +80,36 @@
         i += 1;
       }
       view($bonus, 6, 7000);
+      
+      //로또 번호 입력 시 당첨 여부 확인
+      const $your = document.querySelector('#your');
+      const $btn = document.querySelector('#btn');
+      const a = [];
+      $btn.addEventListener('click',()=>{
+        const resultVal = $your.value;
+        a.push(parseInt(resultVal));
+        $your.value= '';
+        $your.focus();
+      })
+      let corTotal = 0;
+      const $correct = document.querySelector('#correct');
+      $correct.addEventListener('click',()=>{
+        for(let i =0; i < winBalls.length; i++){
+          if(winBalls.includes(a[i])){
+            corTotal += 1
+          }
+        }
+        if(corTotal === 5){
+          alert('3등입니다.');
+        }
+        else if(corTotal === 6){
+          alert('2등입니다.');
+        }else if(corTotal === 7){
+          alert('1등입니다.');
+        }else{
+          alert('꽝입니다!');
+        }
+      })
     </script>
   </body>
 </html>
