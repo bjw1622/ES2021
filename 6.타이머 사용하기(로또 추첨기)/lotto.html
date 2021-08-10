@@ -17,58 +17,52 @@
         text-align: center;
         margin-right: 20px;
       }
+      #result:hover {
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
     <div id="result">추첨 결과는?</div>
     <div id="bonus">보너스:</div>
-
     <script>
       const candidate = Array(45)
         .fill()
-        .map((e, i) => i + 1);
+        .map((a, b) => {
+          return b + 1;
+        });
       const shuffle = [];
-
       while (candidate.length > 0) {
-        const random = parseInt(Math.random() * candidate.length);
+        const random = Math.floor(Math.random() * candidate.length);
         const spliceArray = candidate.splice(random, 1);
         const value = spliceArray[0];
         shuffle.push(value);
       }
       console.log(shuffle);
 
-      /* for문으로 사용하기
-      for (let i = candidate.length; i > 0; i--) {
-        const random = parseInt(Math.random() * candidate.length);
-        const spliceArray = candidate.splice(random, 1);
-        const value = spliceArray[0];
-        shuffle.push(value);
-      }
-      console.log(shuffle);
-      */
-      const winBalls = shuffle.slice(0, 6).sort((a, b) => a - b);
-      const bonus = shuffle[6];
-      console.log(winBalls, bonus);
+      const winBalls = shuffle.slice(0, 7).sort((a, b) => a - b);
+      console.log(winBalls);
+      const bonus = winBalls[6];
+      console.log(bonus);
 
-      const $result = document.querySelector("#result");
-      const $bonus = document.queryCommandEnabled("#bonus");
-
-      const showBall = (number, $target) => {
-        const $ball = document.createElement("div");
-        $ball.className = "ball";
-        $ball.textContent = number;
-        $target.appendChild($ball);
-      };
-
-      for (let i = 0; i < 6; i++) {
+      function view(component, index, time) {
         setTimeout(() => {
-          showBall(winBalls[i], $result);
-        }, (i + 1) * 1000);
+          const $ball = document.createElement("div");
+          $ball.setAttribute("class", "ball");
+          $ball.textContent = `${winBalls[index]}`;
+          component.appendChild($ball);
+        }, time);
       }
+      const $result = document.querySelector("#result");
+      const $bonus = document.querySelector("#bonus");
 
-      setTimeout(() => {
-        showBall(bonus, $bonus);
-      }, 7000);
+      //중복 제거
+      let i = 0;
+      while (i < 6) {
+        view($result, i, (i + 1) * 1000);
+        i += 1;
+      }
+      view($bonus, 6, 7000);
     </script>
   </body>
 </html>
