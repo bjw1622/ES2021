@@ -50,6 +50,18 @@
           const $ball = document.createElement("div");
           $ball.setAttribute("class", "ball");
           $ball.textContent = `${winBalls[index]}`;
+          if (winBalls[index] < 10) {
+            $ball.style.backgroundColor = "red";
+          } else if (winBalls[index] < 20) {
+            $ball.style.backgroundColor = "orange";
+          } else if (winBalls[index] < 30) {
+            $ball.style.backgroundColor = "yellow";
+          } else if (winBalls[index] < 40) {
+            $ball.style.backgroundColor = "blue";
+          } else {
+            $ball.style.backgroundColor = "green";
+            $ball.style.color = "white";
+          }
           component.appendChild($ball);
         }, time);
       }
