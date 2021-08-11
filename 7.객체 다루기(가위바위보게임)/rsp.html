@@ -60,6 +60,7 @@
       // clickButton 5번 호출, 인터벌 1번, 2번, 3번, 4번, 5번(얘만 intervalId)
       //  그 다음에 버튼을 클릭하면 5번만 취소
       let clickable = true;
+      let score = 0;
       const clickButton = () => {
         if (clickable === true) {
           clearInterval(intervalId);
@@ -77,7 +78,6 @@
           const computerScore = scoreTable[computerChoice];
           const diff = myScore - computerScore;
           let message;
-          let score = 0;
           if (diff === 0) {
             message = `비김`;
           } else if ([1, -2].includes(diff)) {
