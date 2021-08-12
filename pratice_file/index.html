@@ -5,8 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      div {
+        background-color: aqua;
+      }
+    </style>
   </head>
   <body>
-    <link rel="stylesheet" href="class.js" />
+    <div id="dd">dd</div>
+    <script>
+      const div = document.querySelector("#dd");
+      div.append("추가", div, "완료");
+    </script>
   </body>
 </html>
