@@ -35,24 +35,26 @@
       let endTime;
       const resultArr = [];
       let totalEle = 0;
+      let timeoutId;
       $screen.addEventListener("click", () => {
         if ($screen.classList.contains("waiting")) {
           //대기화면
           $screen.classList.replace("waiting", "ready");
           $screen.textContent = "초록색이 되면 클릭하세요.";
 
-          setTimeout(() => {
+          timeoutId = setTimeout(() => {
             startTime = new Date();
             console.log(startTime);
             $screen.classList.replace("ready", "now");
             $screen.textContent = "클릭하세요!";
-          }, parseFloat(Math.random() * 1000) + 2000);
+          }, parseFloat(Math.random() * 1000) + 2000); //2초~3초 사이
         } else if ($screen.classList.contains("ready")) {
           //준비화면
           $screen.classList.replace("ready", "waiting");
           alert("성급했습니다.");
         } else if ($screen.classList.contains("now")) {
           //클릭화면
+          clearTimeout(timeoutId);
           endTime = new Date();
           let total = endTime - startTime;
           totalEle += total;
@@ -60,6 +62,8 @@
           $result.textContent = `현재 ${total}ms, 평균 ${
             totalEle / resultArr.length
           }ms`;
+          endTime = null;
+          startTime = null;
           $screen.classList.remove("now");
           $screen.classList.add("waiting");
         }
