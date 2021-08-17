@@ -20,51 +20,36 @@
   </head>
   <body>
     <script>
-      const { body } = document;
-      const $table = document.createElement("table");
-      const $result = document.createElement("div");
-
+      let turn = "O";
       const rows = [];
+      const $result = document.createElement("div");
+      for (let i = 0; i < 3; i++) {
+        rows.push([]);
+      }
+      const $table = document.createElement("table");
 
       for (let i = 0; i < 3; i++) {
         const $tr = document.createElement("tr");
-        $table.append($tr);
         const cells = [];
-        for (let j = 0; j < 3; j++) {
+        for (let i = 0; i < 3; i++) {
           const $td = document.createElement("td");
+          cells.push($td);
+          $td.addEventListener("click", (event) => {
+            if (event.target.textContent) return;
+            event.target.textContent = turn;
+            if (turn === "O") {
+              turn = "X";
+            } else {
+              turn = "O";
+            }
+          });
+          rows.push(cells);
           $tr.append($td);
-          cells.push("td");
-          $td.addEventListener("click", callback);
         }
-        rows.push(cells);
-        body.append($tr);
+        $table.append($tr);
       }
-      let change = "O";
-      function callback(event) {
-        //비어있으면
-        if (event.target.textContent === "") {
-          if (change === "O") {
-            event.target.textContent = "O";
-            change = "X";
-          } else {
-            event.target.textContent = "X";
-            change = "O";
-          }
-        }
-        //비어있지 않으면
-        else {
-          console.log(`exist`);
-        }
-      }
-      let flag = false;
-      if (
-        rows[0].includes("td") === false &&
-        rows[1].includes("td") === false &&
-        rows[2].includes("td") === false
-      ) {
-        console.log("");
-      } else {
-      }
+      document.body.append($table);
+      console.log(rows);
     </script>
   </body>
 </html>
