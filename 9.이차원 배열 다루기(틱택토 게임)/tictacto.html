@@ -20,40 +20,51 @@
   </head>
   <body>
     <script>
-      let turn = "O";
-      const data = [];
-      for (let i = 0; i < 3; i++) {
-        data.push([]);
-      }
-      const $table = document.createElement(`table`);
-      const $result = document.createElement(`div`);
-      $result.textContent = `결과:`;
+      const { body } = document;
+      const $table = document.createElement("table");
+      const $result = document.createElement("div");
+
+      const rows = [];
+
       for (let i = 0; i < 3; i++) {
         const $tr = document.createElement("tr");
-        for (let j = 0; j < 3; j++) {
-          const $td = document.createElement(`td`);
-          $tr.append($td);
-          $td.addEventListener("click", (event) => {
-            console.log("click");
-            //칸에 글자가 있나?
-            //조건으로 flag
-            if (event.target.textContent) {
-              alert("중복 입력은 안됩니다.");
-              return;
-            }
-            //턴 넘기기
-            event.target.textContent = turn;
-            if (turn === "O") {
-              turn = "X";
-            } else {
-              turn = "O";
-            }
-          });
-        }
         $table.append($tr);
+        const cells = [];
+        for (let j = 0; j < 3; j++) {
+          const $td = document.createElement("td");
+          $tr.append($td);
+          cells.push("td");
+          $td.addEventListener("click", callback);
+        }
+        rows.push(cells);
+        body.append($tr);
       }
-      document.body.append($table);
-      document.body.append($result);
+      let change = "O";
+      function callback(event) {
+        //비어있으면
+        if (event.target.textContent === "") {
+          if (change === "O") {
+            event.target.textContent = "O";
+            change = "X";
+          } else {
+            event.target.textContent = "X";
+            change = "O";
+          }
+        }
+        //비어있지 않으면
+        else {
+          console.log(`exist`);
+        }
+      }
+      let flag = false;
+      if (
+        rows[0].includes("td") === false &&
+        rows[1].includes("td") === false &&
+        rows[2].includes("td") === false
+      ) {
+        console.log("");
+      } else {
+      }
     </script>
   </body>
 </html>
