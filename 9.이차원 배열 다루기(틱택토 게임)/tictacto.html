@@ -37,8 +37,22 @@
           $table.removeEventListener("click", callback);
           return;
         }
-        //승자가 없으면
+        //무승부
+        let draw = true;
+        rows.forEach((a, b) => {
+          a.forEach((c, d) => {
+            //비어있으면
+            if (!c.textContent) {
+              draw = false;
+            }
+          });
+        });
+        if (draw) {
+          $result.textContent = "무승부";
+          return;
+        }
         if (turn === "O") {
+          //승자가 없으면
           turn = "X";
         } else {
           turn = "O";
@@ -46,16 +60,12 @@
       };
 
       const checkWinner = (target) => {
-        let rowIndex;
-        let cellIndex;
-        rows.forEach((row, ri) => {
-          row.forEach((cell, ci) => {
-            if (cell === target) {
-              rowIndex = ri;
-              cellIndex = ci;
-            }
-          });
-        });
+        const rowIndex = target.parentNode.rowIndex;
+        const cellIndex = target.cellIndex;
+        console.log(rowIndex, cellIndex);
+        //console.log(target.parentNode.children);
+        //console.log(Array.from(target.parentNode.children).indexOf(target));
+
         let hasWinner = false;
         //가로줄 검사
         if (
