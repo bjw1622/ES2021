@@ -20,6 +20,7 @@
         <span id="hero-xp"></span>
         <span id="hero-att"></span>
       </div>
+      <!-- 단계 입력 -->
       <form id="game-menu" style="display: none">
         <div id="menu-1">1.모험</div>
         <div id="menu-2">2.휴식</div>
@@ -27,6 +28,7 @@
         <input id="menu-input" />
         <button id="menu-button">입력</button>
       </form>
+      <!-- 전투 모드 입력 -->
       <form id="battle-menu" style="display: none">
         <div id="battle-1">1.공격</div>
         <div id="battle-2">2.회복</div>
@@ -34,6 +36,7 @@
         <input id="battle-input" />
         <button id="battle-button">입력</button>
       </form>
+      <!-- 몬스터 능력치 생성 -->
       <div id="message"></div>
       <div id="monster-stat">
         <span id="monster-name"></span>
@@ -41,6 +44,63 @@
         <span id="monster-att"></span>
       </div>
     </div>
-    <script></script>
+    <script>
+      const $startScreen = document.querySelector("#start-screen");
+      const $gameMenu = document.querySelector("#game-menu");
+      const $battleMenu = document.querySelector("#battle-menu");
+      const $heroName = document.querySelector("#hero-name");
+      const $heroLevel = document.querySelector("#hero-level");
+      const $heroHp = document.querySelector("#hero-hp");
+      const $heroXp = document.querySelector("#hero-xp");
+      const $heroAtt = document.querySelector("#hero-att");
+      const $monsterName = document.querySelector("#monster-name");
+      const $monsterHp = document.querySelector("#monster-hp");
+      const $monsterAtt = document.querySelector("#monster-att");
+      const $message = document.querySelector("#message");
+
+      const hero = {
+        name: "",
+        lev: 1,
+        maxHp: 100,
+        hp: 100,
+        xp: 0,
+        att: 10,
+      };
+
+      let monster = null;
+      const monsterList = [
+        { name: "슬라임", hp: 25, att: 10, xp: 10 },
+        { name: "스켈", hp: 50, att: 15, xp: 20 },
+        { name: "마", hp: 150, att: 35, xp: 50 },
+      ];
+      //submit 했을 때 이름 표시 및 화면 전환
+      $startScreen.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const name = event.target["name-input"].value;
+        console.log(name);
+        $startScreen.style.display = "none";
+        $gameMenu.style.display = "block";
+        $heroName.textContent = name;
+        $heroLevel.textContent = `${hero.lev}LV`;
+        $heroHp.textContent = `${hero.hp}HP`;
+        $heroXp.textContent = `${hero.xp}/${hero.lev * 15}XP`;
+        $heroAtt.textContent = `${hero.att}ATK`;
+      });
+
+      $gameMenu.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const input = event.target["menu-input"].value;
+        console.log(input);
+        if (input === "1") {
+          //모험
+          $gameMenu.style.display = "none";
+          $battleMenu.style.display = "block";
+        } else if (input === "2") {
+          //휴식
+        } else if (input === "3") {
+          //종료
+        }
+      });
+    </script>
   </body>
 </html>
