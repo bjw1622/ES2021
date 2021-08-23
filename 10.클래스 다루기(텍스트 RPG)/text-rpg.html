@@ -57,7 +57,7 @@
       const $monsterHp = document.querySelector("#monster-hp");
       const $monsterAtt = document.querySelector("#monster-att");
       const $message = document.querySelector("#message");
-
+      //this 기본적으로 window객체이다.
       const hero = {
         name: "",
         lev: 1,
@@ -65,8 +65,31 @@
         hp: 100,
         xp: 0,
         att: 10,
+        attack(monster) {
+          monster.hp -= this.att;
+          this.hp -= monster.att;
+        },    
+        hear(monster) {
+          this.hp += 20;
+          this.hp -= monster.att;
+        },
       };
-
+      class Monster {
+        constructor(name, hp, att, xp) {
+          this.name = name;
+          this.hp = hp;
+          this.att = att;
+          this.xp = xp;
+        }
+        attack(monster) {
+          monster.hp -= this.att;
+          this.hp -= monster.att;
+        }
+        hear(monster) {
+          this.hp += 20;
+          this.hp -= monster.att;
+        }
+      }
       let monster = null;
       const monsterList = [
         { name: "슬라임", hp: 25, att: 10, xp: 10 },
@@ -93,12 +116,36 @@
         console.log(input);
         if (input === "1") {
           //모험
+          hero.attack(monster);
+          //monster.attack(hero);
+          $hero.textContent = `HP:${hero.hp}/${hero.maxHp}`;
+          $monster.textContent = `HP:${monster.hp}/${monster.maxHp}`;
           $gameMenu.style.display = "none";
           $battleMenu.style.display = "block";
+          //깊은 복사해서 몬스터에 넣어 줌.
+          monster = JSON.parse(
+            JSON.stringify(
+              monsterList[Math.floor(Math.random() * monsterList.length)]
+            )
+          );
+          monster.maxHp = monster.hp;
+          $monsterName.textContent = monster.name;
+          $monsterHp.textContent = `HP: ${monster.hp}/${monster.maxHp}`;
+          $monsterAtt.textContent = `ATT: ${monster.att}`;
         } else if (input === "2") {
           //휴식
         } else if (input === "3") {
           //종료
+        }
+      });
+      $battleMenu.addEventListener("submit", (event) => {
+        if (input === "1") {
+          //공격
+          hero.attack(monster);
+        } else if (input === "2") {
+          //회복
+        } else if (input === "3") {
+          //도망
         }
       });
     </script>
