@@ -59,3 +59,7 @@
 // };
 
 // b(1, 2, 3);
+const dsac = (x, y, z) => {
+  console.log(x * y * z);
+};
+dsac(1, 2, 3);
