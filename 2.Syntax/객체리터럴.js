@@ -19,8 +19,20 @@ const jay = {
 // delete jay.sda;
 // console.log(jay);
 
-console.log(jay.name); //대부분 온점을 활용하여 접근
-console.log(jay[`name`]);
-const target = "name";
-// console.log(jay["target"]);
-console.log(jay[target]);
+// console.log(jay.name); //대부분 온점을 활용하여 접근
+// console.log(jay[`name`]);
+// const target = "name";
+// // console.log(jay["target"]);
+// console.log(jay[target]);
+
+jay.name = "jay";
+
+delete jay.day; // 속성 삭제!
+console.log(jay);
+
+const m = {
+  met: function (value) {
+    console.log(value);
+  },
+};
+m.met("test");
