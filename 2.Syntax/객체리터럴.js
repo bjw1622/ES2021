@@ -49,15 +49,25 @@ const jay = {
 //   console.log(true);
 // }
 
-// 참조
-// 객체를 저장한 변수를 다른 변수에 대입하면 두 변수 모두 같은 객체를 저장하는 셈.
+//FIX객체를 저장한 변수를 다른 변수에 대입하면 두 변수 모두 같은 객체를 저장하는 셈.
 // a 와 b가 같은 객체를 참조하고 있다.
 // 객체에 해당하는 경우만 참조가 발생한다.
-const a = { name: `백재원`, age: 26 };
-const b = a;
-a.name = `jay`;
-console.log(b.name);
-const a = [1, 2, 3];
-const b = a;
-a[0] = 11;
-console.log(b);
+// const a = { name: `백재원`, age: 26 };
+// const b = a;
+// a.name = `jay`;
+// console.log(b.name);
+// const a = [1, 2, 3];
+// const b = a;
+// a[0] = 11;
+// console.log(b);
+
+//FIX 1분 퀴즈
+const zerocho = {
+  name: {
+    first: `현영`,
+    last: `조`,
+  },
+  gender: `m`,
+};
+
+console.log(zerocho.name.last);
