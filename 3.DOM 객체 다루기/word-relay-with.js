@@ -5,7 +5,7 @@ const $ = (selector) => {
 const number = parseInt(prompt("몇 명이 참가하나요?"), 10);
 let word; //제시어
 let newWord; // 새로 입력한 단어
-let count = 1;
+let count = 0;
 // input
 $("input").addEventListener("input", function (event) {
   newWord = event.target.value;
@@ -16,27 +16,12 @@ $("button").addEventListener("click", (event) => {
   // FIX
   // word => undefined이므로 !word는 true이다.
   if (!word) {
-    word = newWord;
-    $("#word").textContent = word;
-    $("input").value = "";
-    $("input").focus();
-    // count
-    $("span").textContent = `${count}`;
-    count += 1;
-    if (count === number) {
-      count = 1;
-    }
+    changeWord();
   } else {
     if (newWord[0] === word[word.length - 1]) {
-      word = newWord;
-      $("#word").textContent = word;
-      $("input").value = "";
-      $("input").focus();
-      // count
-      $("span").textContent = `${count}`;
-      count += 1;
+      changeWord();
       if (count === number) {
-        count = 1;
+        count = 0;
       }
     } else {
       alert("틀렸습니다.");
@@ -45,6 +30,12 @@ $("button").addEventListener("click", (event) => {
     }
   }
 });
-function changeWord{
-  
+function changeWord() {
+  word = newWord;
+  $("#word").textContent = word;
+  $("input").value = "";
+  $("input").focus();
+  // count
+  $("span").textContent = `${count + 1}`;
+  count += 1;
 }
