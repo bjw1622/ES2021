@@ -15,19 +15,15 @@ $("input").addEventListener("input", function (event) {
 $("button").addEventListener("click", (event) => {
   // FIX
   // word => undefined이므로 !word는 true이다.
-  if (!word) {
+  if (!word || newWord[0] === word[word.length - 1]) {
     changeWord();
-  } else {
-    if (newWord[0] === word[word.length - 1]) {
-      changeWord();
-      if (count === number) {
-        count = 0;
-      }
-    } else {
-      alert("틀렸습니다.");
-      $("input").value = "";
-      $("input").focus();
+    if (count === number) {
+      count = 0;
     }
+  } else {
+    alert("틀렸습니다.");
+    $("input").value = "";
+    $("input").focus();
   }
 });
 function changeWord() {
