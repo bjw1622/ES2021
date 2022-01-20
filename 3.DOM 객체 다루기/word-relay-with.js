@@ -3,6 +3,7 @@ const $ = (selector) => {
 };
 
 const number = parseInt(prompt("몇 명이 참가하나요?"), 10);
+let count = 0;
 let word; //제시어
 let newWord; // 새로 입력한 단어
 // input
