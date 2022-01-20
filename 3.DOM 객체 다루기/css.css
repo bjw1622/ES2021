@@ -32,3 +32,8 @@ button {
   display: block;
   margin: 10px auto 0px auto;
 }
+input:focus {
+  outline: none;
+  border: 3px solid rgb(3, 120, 255);
+  border-radius: 0.75rem;
+}
