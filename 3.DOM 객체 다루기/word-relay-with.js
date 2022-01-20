@@ -1,8 +1,9 @@
 const $ = (selector) => {
-  document.querySelector(selector);
+  return document.querySelector(selector);
 };
 
-const number = parseInt(prompt("몇 1명이 참가하나요?"), 10);
-$(".btn").addEventListener("click", (event) => {
-  console.log(event.target);
+const number = parseInt(prompt("몇 명이 참가하나요?"), 10);
+
+$("input").addEventListener("input", function () {
+  console.log("글자 입력");
 });
