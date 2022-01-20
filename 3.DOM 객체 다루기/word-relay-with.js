@@ -3,13 +3,27 @@ const $ = (selector) => {
 };
 
 const number = parseInt(prompt("몇 명이 참가하나요?"), 10);
-
+let word; //제시어
+let newWord; // 새로 입력한 단어
 // input
 $("input").addEventListener("input", function (event) {
-  console.log(event.target.value);
+  newWord = event.target.value;
 });
 
 // button
 $("button").addEventListener("click", (event) => {
-  console.log(event.target);
+  // FIX
+  // word => undefined이므로 !word는 true이다.
+  if (!word) {
+    word = newWord;
+    $("#word").textContent = word;
+    $("input").value = "";
+  } else {
+    if (newWord[0] === word[word.length - 1]) {
+      word = newWord;
+      $("#word").textContent = word;
+      $("input").value = "";
+    } else {
+    }
+  }
 });
