@@ -22,15 +22,13 @@ $("button").addEventListener("click", (event) => {
     }
   } else {
     alert("틀렸습니다.");
-    $("input").value = "";
-    $("input").focus();
   }
+  $("input").value = "";
+  $("input").focus();
 });
 function changeWord() {
   word = newWord;
   $("#word").textContent = word;
-  $("input").value = "";
-  $("input").focus();
   // count
   $("span").textContent = `${count + 1}`;
   count += 1;
