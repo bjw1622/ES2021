@@ -46,7 +46,11 @@ $("button").addEventListener("click", (event) => {
       alert("틀렸습니다. 다시 입력해주세요");
       $("input").value = "";
       $("input").focus();
-      $("span").textContent = `${count}번째 참가자`;
+      if (count === 0) {
+        $("span").textContent = `${count + 1}번째 참가자`;
+      } else {
+        $("span").textContent = `${count}번째 참가자`;
+      }
     }
   }
 });
