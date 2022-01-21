@@ -2,49 +2,31 @@ const $ = (selector) => document.querySelector(selector);
 let numOne = "";
 let operator = "";
 let numTwo = "";
-$("#num-0").addEventListener("click", () => {
-  numbering(0);
-});
-$("#num-1").addEventListener("click", () => {
-  numbering(1);
-});
-$("#num-2").addEventListener("click", () => {
-  numbering(2);
-});
-$("#num-3").addEventListener("click", () => {
-  numbering(3);
-});
-$("#num-4").addEventListener("click", () => {
-  numbering(4);
-});
-$("#num-5").addEventListener("click", () => {
-  numbering(5);
-});
-$("#num-6").addEventListener("click", () => {
-  numbering(6);
-});
-$("#num-7").addEventListener("click", () => {
-  numbering(7);
-});
-$("#num-8").addEventListener("click", () => {
-  numbering(8);
-});
-$("#num-9").addEventListener("click", () => {
-  numbering(9);
-});
+
+// 리스너 함수의 자리에 맞게 return 타입으로 고차 함수의 형태로
+// 함수의 함수안에 실행하고자 하는 걸
+const onClickNumber = (number) => () => {
+  if (operator) {
+    numTwo += number;
+  } else {
+    numOne += number;
+  }
+  $("#result").value += number;
+};
+
+$("#num-0").addEventListener("click", onClickNumber(0));
+$("#num-1").addEventListener("click", () => {});
+$("#num-2").addEventListener("click", () => {});
+$("#num-3").addEventListener("click", () => {});
+$("#num-4").addEventListener("click", () => {});
+$("#num-5").addEventListener("click", () => {});
+$("#num-6").addEventListener("click", () => {});
+$("#num-7").addEventListener("click", () => {});
+$("#num-8").addEventListener("click", () => {});
+$("#num-9").addEventListener("click", () => {});
 $("#plus").addEventListener("click", () => {});
 $("#minus").addEventListener("click", () => {});
 $("#divide").addEventListener("click", () => {});
 $("#multiply").addEventListener("click", () => {});
 $("#calculate").addEventListener("click", () => {});
 $("#clear").addEventListener("click", () => {});
-
-function numbering(num) {
-  if (operator) {
-    //비어 있지 않다
-    numTwo += "num";
-  } else {
-    // 비어있다
-    numOne += "num";
-  }
-}
