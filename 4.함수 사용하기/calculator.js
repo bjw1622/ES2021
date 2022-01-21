@@ -10,8 +10,8 @@ const onClickOperator = (ope) => () => {
     alert("숫자를 입력해주세요");
   } else {
     operator = ope;
+    $("#operator").value = ope;
   }
-  $("#operator").value = ope;
 };
 
 const onClickNumber = (event) => {
@@ -45,20 +45,37 @@ $("#calculate").addEventListener("click", (event) => {
     alert("숫자를 입력해주세요.");
     return;
   }
-  switch (operator) {
-    case "+":
-      result = Number(numOne) + Number(numTwo);
-      break;
-    case "-":
-      result = Number(numOne) - Number(numTwo);
-      break;
-    case "*":
-      result = Number(numOne) * Number(numTwo);
-      break;
-    case "/":
-      result = Number(numOne) / Number(numTwo);
-      break;
+  //   switch (operator) {
+  //     case "+":
+  //       result = Number(numOne) + Number(numTwo);
+  //       break;
+  //     case "-":
+  //       result = Number(numOne) - Number(numTwo);
+  //       break;
+  //     case "*":
+  //       result = Number(numOne) * Number(numTwo);
+  //       break;
+  //     case "/":
+  //       result = Number(numOne) / Number(numTwo);
+  //       break;
+  //   }
+  if (operator === "+") {
+    result = parseInt(numOne) + parseInt(numTwo);
+  } else if (operator === "-") {
+    result = parseInt(numOne) - parseInt(numTwo);
+  } else if (operator === "/") {
+    result = parseInt(numOne) / parseInt(numTwo);
+  } else if (operator === "*") {
+    result = parseInt(numOne) * parseInt(numTwo);
   }
   $("#result").value = result;
 });
-$("#clear").addEventListener("click", () => {});
+
+$("#clear").addEventListener("click", () => {
+  numOne = "";
+  numTwo = "";
+  operator = "";
+  result = "";
+  $("#operator").value = "";
+  $("#result").value = "";
+});
