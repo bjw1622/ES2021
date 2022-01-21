@@ -15,14 +15,15 @@ const onClickOperator = (ope) => () => {
 };
 
 const onClickNumber = (event) => {
-  if (!operator === false && !numTwo === true) {
+  if (!operator) {
+    numOne += event.target.textContent;
+    $("#result").value += event.target.textContent;
+    return;
+  }
+  if (!numTwo) {
     $("#result").value = "";
   }
-  if (operator) {
-    numTwo += event.target.textContent;
-  } else {
-    numOne += event.target.textContent;
-  }
+  numTwo += event.target.textContent;
   $("#result").value += event.target.textContent;
 };
 $("#num-0").addEventListener("click", onClickNumber);
