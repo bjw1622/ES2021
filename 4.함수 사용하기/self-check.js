@@ -18,6 +18,7 @@ const onClickOperator = (ope) => () => {
     numTwo = "";
     result = "";
     operator = ope;
+
     $("#operator").value = ope;
   }
 };
