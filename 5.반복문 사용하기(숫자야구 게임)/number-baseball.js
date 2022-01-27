@@ -7,4 +7,4 @@ for (let i = 0; i <= 3; i++) {
   const index = Math.floor(Math.random() * 9 + 1);
 
   answer.push(numbers[index]);
-}
+}.
