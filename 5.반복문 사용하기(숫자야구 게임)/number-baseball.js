@@ -13,9 +13,15 @@ for (let n = 0; n < 4; n += 1) {
   answer.push(numbers[index]);
   numbers.splice(index, 1);
 }
-console.log(answer);
+
+const tries = [];
+function checkInput(input) {}
 
 // form안의 버튼을 클릭하면 submit 이벤트 발생
 $('#form').addEventListener('submit', event => {
   event.preventDefault(); // 기본 동작 막기
+  const value = $('#input').value;
+  $('#input').value = '';
+  // 답안 검사 코드
+  checkInput(value);
 });
