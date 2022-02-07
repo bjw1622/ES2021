@@ -1,14 +1,15 @@
-const$ = (selector) => document.querySelector(selector);
+const $ = selector => {
+  return document.querySelector('selector');
+};
 
-// 숫자 랜덤으로 4자리 만들기
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const numbers = [];
+for (let n = 1; n < 10; n += 1) {
+  numbers.push(n);
+}
+
 const answer = [];
-for (let i = 0; i <= 3; i++) {
+for (let n = 0; n < 4; n += 1) {
   const index = Math.floor(Math.random() * 9);
-  if (index > numbers.length) {
-    answer.push(numbers[index - i]);
-    numbers.splice(index - i, index - i);
-  }
   answer.push(numbers[index]);
-  numbers.splice(index, index);
+  numbers.splice(index, i);
 }
