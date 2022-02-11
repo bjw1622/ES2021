@@ -25,6 +25,7 @@ function checkInput(input) {
   if (tries.includes(input)) {
     return alert('이미 시도한 값입니다.');
   }
+  return true;
 }
 
 // form안의 버튼을 클릭하면 submit 이벤트 발생
@@ -32,6 +33,7 @@ $('#form').addEventListener('submit', event => {
   event.preventDefault(); // 기본 동작 막기
   const value = $('#input').value;
   $('#input').value = '';
+
   // 답안 검사 코드
   if (checkInput(value)) {
     tries.push(value); //입력 값 문제 없음
