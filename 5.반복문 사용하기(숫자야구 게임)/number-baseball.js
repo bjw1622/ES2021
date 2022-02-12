@@ -28,6 +28,7 @@ function checkInput(input) {
   return true;
 }
 
+let out = 0;
 // form안의 버튼을 클릭하면 submit 이벤트 발생
 $('#form').addEventListener('submit', event => {
   event.preventDefault(); // 기본 동작 막기
@@ -69,6 +70,16 @@ $('#form').addEventListener('submit', event => {
     `${value}: ${strike} 스트라이크 ${ball} 볼`,
     document.createElement('br')
   );
+
+  if (strike === 0 && ball === 0) {
+    out += 1;
+  }
+
+  $('#logs').append(`${out} OUT`, document.createElement('br'));
+
+  if (out === 3) {
+    alert('3OUT으로 게임 종료!');
+  }
   // 시도 값에 추가
   tries.push(value);
 });
