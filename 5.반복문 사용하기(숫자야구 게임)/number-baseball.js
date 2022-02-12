@@ -32,6 +32,24 @@ function checkInput(input) {
 $('#form').addEventListener('submit', event => {
   event.preventDefault(); // 기본 동작 막기
 
+  const value = $('#input').value;
+  $('#input').value = '';
+
+  // 답안 검사 코드
+  if (!checkInput(value)) {
+    return;
+  }
+
+  //입력 값 문제 없음
+  if (answer.join('') === value) {
+    $('#logs').textContent = `홈런!`;
+  }
+
+  if (tries.length >= 9) {
+    const message = document.createTextNode(`패배! 정답은 ${answer.join('')}`);
+    $('#log').append(message);
+  }
+
   let strike = 0;
   let ball = 0;
 
@@ -51,23 +69,6 @@ $('#form').addEventListener('submit', event => {
     `${value}: ${strike} 스트라이크 ${ball} 볼`,
     document.createElement('br')
   );
-
-  const value = $('#input').value;
-  $('#input').value = '';
-
-  // 답안 검사 코드
-  if (!checkInput(value)) {
-    return;
-  }
   // 시도 값에 추가
   tries.push(value);
-  //입력 값 문제 없음
-  if (answer.join('') === value) {
-    $('#logs').textContent = `홈런`;
-  }
-
-  if (tries.length >= 9) {
-    const message = document.createTextNode(`패배! 정답은 ${answer.join('')}`);
-    $('#log').appendChild(message);
-  }
 });
