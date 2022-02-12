@@ -31,6 +31,27 @@ function checkInput(input) {
 // form안의 버튼을 클릭하면 submit 이벤트 발생
 $('#form').addEventListener('submit', event => {
   event.preventDefault(); // 기본 동작 막기
+
+  let strike = 0;
+  let ball = 0;
+
+  for (let i = 0; i < answer.length; i++) {
+    const index = value.indexOf(answer[i]);
+    // 같은게 있음
+    if (index > -1) {
+      if (index === i) {
+        strike += 1;
+      } else {
+        ball += 1;
+      }
+    }
+  }
+
+  $('#logs').append(
+    `${value}: ${strike} 스트라이크 ${ball} 볼`,
+    document.createElement('br')
+  );
+
   const value = $('#input').value;
   $('#input').value = '';
 
@@ -46,6 +67,7 @@ $('#form').addEventListener('submit', event => {
   }
 
   if (tries.length >= 9) {
-    $('#logs').textContent = `패배! 정답은 ${answer.join('')}`;
+    const message = document.createTextNode(`패배! 정답은 ${answer.join('')}`);
+    $('#log').appendChild(message);
   }
 });
