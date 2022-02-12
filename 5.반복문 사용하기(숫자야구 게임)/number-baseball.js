@@ -35,8 +35,17 @@ $('#form').addEventListener('submit', event => {
   $('#input').value = '';
 
   // 답안 검사 코드
-  if (checkInput(value)) {
-    tries.push(value); //입력 값 문제 없음
-  } else {
+  if (!checkInput(value)) {
+    return;
+  }
+  // 시도 값에 추가
+  tries.push(value);
+  //입력 값 문제 없음
+  if (answer.join('') === value) {
+    $('#logs').textContent = `홈런`;
+  }
+
+  if (tries.length >= 9) {
+    $('#logs').textContent = `패배! 정답은 ${answer.join('')}`;
   }
 });
