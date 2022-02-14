@@ -21,11 +21,28 @@ const winBalls = shuffle.slice(0, 6).sort((a, b) => {
   return a - b;
 });
 
+// 색깔 변경 코드
+function colorlize($ball, winBalls, number) {
+  if (winBalls[number] < 10) {
+    $ball.style.backgroundColor = 'red';
+    $ball.style.color = 'white';
+  } else if (winBalls[number] < 20) {
+    $ball.style.backgroundColor = 'orange';
+  } else if (winBalls[number] < 30) {
+    $ball.style.backgroundColor = 'blue';
+    $ball.style.color = 'white';
+  } else {
+    $ball.style.backgroundColor = 'green';
+    $ball.style.color = 'white';
+  }
+}
+
 // ball 그리는 메서드
 function ballDisplay(number, tag) {
   const $ball = document.createElement('div');
   $ball.className = 'ball';
   $ball.textContent = `${winBalls[number]}`;
+  colorlize($ball, winBalls, number);
   $(tag).appendChild($ball);
 }
 
