@@ -13,3 +13,8 @@ while (candidate.length > 0) {
   const value = spliceArray[0];
   shuffle.push(value);
 }
+// 무작위로 7개 뽑은거 오름차순으로 정렬
+const winBalls = shuffle.slice(0, 6).sort((a, b) => {
+  return a - b;
+});
+console.log(winBalls);
