@@ -20,25 +20,22 @@ while (candidate.length > 0) {
 const winBalls = shuffle.slice(0, 6).sort((a, b) => {
   return a - b;
 });
-console.log(winBalls);
+
+function ballDisplay(number, tag) {
+  const $ball = document.createElement('div');
+  $ball.className = 'ball';
+  $ball.textContent = `${winBalls[number]}`;
+  $(tag).appendChild($ball);
+}
+for (let i = 0; i < 5; i++) {
+  setTimeout(() => {
+    ballDisplay(i, '#result');
+  }, (i + 1) * 1000);
+}
 
 setTimeout(() => {
   const $ball = document.createElement('div');
   $ball.className = 'ball';
-  $ball.textContent = `${winBalls[0]}`;
-  $('#result').appendChild($ball);
-}, 1000);
-
-setTimeout(() => {
-  const $ball = document.createElement('div');
-  $ball.className = 'ball';
-  $ball.textContent = `${winBalls[1]}`;
-  $('#result').appendChild($ball);
-}, 2000);
-
-setTimeout(() => {
-  const $ball = document.createElement('div');
-  $ball.className = 'ball';
-  $ball.textContent = `${winBalls[2]}`;
-  $('#result').appendChild($ball);
-}, 3000);
+  $ball.textContent = `${winBalls[5]}`;
+  $('#bonus').appendChild($ball);
+}, 6000);
