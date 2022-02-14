@@ -21,12 +21,14 @@ const winBalls = shuffle.slice(0, 6).sort((a, b) => {
   return a - b;
 });
 
+// ball 그리는 메서드
 function ballDisplay(number, tag) {
   const $ball = document.createElement('div');
   $ball.className = 'ball';
   $ball.textContent = `${winBalls[number]}`;
   $(tag).appendChild($ball);
 }
+
 for (let i = 0; i < 5; i++) {
   setTimeout(() => {
     ballDisplay(i, '#result');
