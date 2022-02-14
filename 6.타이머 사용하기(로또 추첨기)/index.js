@@ -1,3 +1,6 @@
+const $ = selector => {
+  return document.querySelector(selector);
+};
 // 45개의 숫자 생성
 const candidate = Array(45)
   .fill()
@@ -18,3 +21,24 @@ const winBalls = shuffle.slice(0, 6).sort((a, b) => {
   return a - b;
 });
 console.log(winBalls);
+
+setTimeout(() => {
+  const $ball = document.createElement('div');
+  $ball.className = 'ball';
+  $ball.textContent = `${winBalls[0]}`;
+  $('#result').appendChild($ball);
+}, 1000);
+
+setTimeout(() => {
+  const $ball = document.createElement('div');
+  $ball.className = 'ball';
+  $ball.textContent = `${winBalls[1]}`;
+  $('#result').appendChild($ball);
+}, 2000);
+
+setTimeout(() => {
+  const $ball = document.createElement('div');
+  $ball.className = 'ball';
+  $ball.textContent = `${winBalls[2]}`;
+  $('#result').appendChild($ball);
+}, 3000);
