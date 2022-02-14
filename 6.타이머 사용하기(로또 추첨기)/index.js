@@ -29,6 +29,7 @@ function ballDisplay(number, tag) {
   $(tag).appendChild($ball);
 }
 
+// 함수를 활용하여 중복 제거 => refactoring
 for (let i = 0; i < 5; i++) {
   setTimeout(() => {
     ballDisplay(i, '#result');
@@ -36,8 +37,5 @@ for (let i = 0; i < 5; i++) {
 }
 
 setTimeout(() => {
-  const $ball = document.createElement('div');
-  $ball.className = 'ball';
-  $ball.textContent = `${winBalls[5]}`;
-  $('#bonus').appendChild($ball);
+  ballDisplay(5, '#bonus');
 }, 6000);
