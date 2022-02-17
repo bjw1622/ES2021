@@ -13,25 +13,32 @@ const rsp = {
   paper: `-448px`,
 };
 
-let coord = `0px`;
+let coord = `scissors`;
 
-let chageComputerHand = () => {
-  if (coord === rsp.scissors) {
+let changeComputerHand = () => {
+  if (coord === 'scissors') {
     //가위면 바위로
-    $('#computer').style.background = `url(${img}) ${rsp.rock} 0`;
-    $('#computer').style.backgroundSize = `auto 200px`;
-    coord = rsp.rock;
-  } else if (coord === rsp.rock) {
+    coord = 'rock';
+  } else if (coord === 'rock') {
     //바위면 보로
-    $('#computer').style.background = `url(${img}) ${rsp.paper} 0`;
-    $('#computer').style.backgroundSize = `auto 200px`;
-    coord = rsp.paper;
-  } else {
+    coord = 'paper';
+  } else if (coord === 'paper') {
     // 보면 가위로
-    $('#computer').style.background = `url(${img}) ${rsp.scissors} 0`;
-    $('#computer').style.backgroundSize = `auto 200px`;
-    coord = rsp.scissors;
+    coord = 'scissors';
   }
+  $('#computer').style.background = `url(${img}) ${rsp[coord]} 0`;
+  $('#computer').style.backgroundSize = `auto 200px`;
 };
 
-setInterval(chageComputerHand, 50);
+let intervalId = setInterval(changeComputerHand, 50);
+
+const clickButton = () => {
+  clearInterval(intervalId);
+  setTimeout(() => {
+    intervalId = setInterval(changeComputerHand, 50);
+  }, 1000);
+};
+
+$('#rock').addEventListener('click', clickButton);
+$('#scissors').addEventListener('click', clickButton);
+$('#paper').addEventListener('click', clickButton);
