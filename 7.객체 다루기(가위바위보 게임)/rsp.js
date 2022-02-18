@@ -32,9 +32,11 @@ let changeComputerHand = () => {
 
 let intervalId = setInterval(changeComputerHand, 50);
 
+// 연달아 클릭하면 setTimeout이 여러번 실행
+// setTimeout은 아무도 클리어를 하지 않는다
 const clickButton = () => {
   clearInterval(intervalId);
-  setTimeout(() => {
+  let setId = setTimeout(() => {
     intervalId = setInterval(changeComputerHand, 50);
   }, 1000);
 };
