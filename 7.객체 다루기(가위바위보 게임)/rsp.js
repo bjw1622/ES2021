@@ -35,7 +35,9 @@ let changeComputerHand = () => {
   $('#computer').style.background = `url(${img}) ${rsp[computerChoice]} 0`;
   $('#computer').style.backgroundSize = `auto 200px`;
 };
-let result = 0;
+let myResult = 0;
+let computerResult = 0;
+let count = 0;
 let resultMessage = '';
 let intervalId = setInterval(changeComputerHand, 50);
 
@@ -65,22 +67,31 @@ const clickButton = event => {
   const computerScore = scoreTable[computerChoice];
   const diff = myScore - computerScore;
   if ([2, -1].includes(diff)) {
-    result += 1;
+    myResult += 1;
+    count += 1;
     resultMessage = '승리';
   } else if (diff === 1 || diff === -2) {
-    result -= 1;
+    computerResult += 1;
+    count += 1;
     resultMessage = '패배';
   } else {
     resultMessage = '무승부';
   }
-  $('#score').textContent = `${resultMessage} ${result}`;
+  $(
+    '#score'
+  ).textContent = `${resultMessage} 컴퓨터:${computerResult} 나:${myResult}`;
 
-  setTimeout(() => {
-    // 클릭 후 1초 후에 실행
-    // 비동기 코드는 항상 조심해야 함.
-    clearInterval(intervalId);
-    intervalId = setInterval(changeComputerHand, 50);
-  }, 1000);
+  if (count < 5 && myResult < 3 && computerResult < 3) {
+    setTimeout(() => {
+      // 클릭 후 1초 후에 실행
+      // 비동기 코드는 항상 조심해야 함.
+      clearInterval(intervalId);
+      intervalId = setInterval(changeComputerHand, 50);
+    }, 1000);
+    return;
+  } else {
+    alert('게임 종료');
+  }
 };
 
 $('#rock').addEventListener('click', clickButton);
