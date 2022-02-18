@@ -40,6 +40,7 @@ let intervalId = setInterval(changeComputerHand, 50);
 // 그 다음 버튼 클릭시에는 5번만 취소되고 1번, 2번, 3번, 4번은 계속 돌게 됨
 
 // 또 다른 방법으로 클릭 후 버튼 클릭이 안되도록 remove해주고 1초 후에 다시 addEventListner를 적용
+// 또 다른 방법으로 flag 변수를 하나 추가해서 if(flag)일때만 실행 가능하도록 코드 추가
 const clickButton = () => {
   // 클릭 하자마자 실행
   clearInterval(intervalId);
