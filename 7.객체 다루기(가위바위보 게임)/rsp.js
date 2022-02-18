@@ -36,6 +36,7 @@ let changeComputerHand = () => {
   $('#computer').style.backgroundSize = `auto 200px`;
 };
 let result = 0;
+let resultMessage = '';
 let intervalId = setInterval(changeComputerHand, 50);
 
 // 연달아 클릭하면 setTimeout이 여러번 실행
@@ -63,12 +64,16 @@ const clickButton = event => {
   const myScore = scoreTable[myChoice];
   const computerScore = scoreTable[computerChoice];
   const diff = myScore - computerScore;
-  if (diff === 2 || diff === -1) {
+  if ([2, -1].includes(diff)) {
     result += 1;
+    resultMessage = '승리';
   } else if (diff === 1 || diff === -2) {
     result -= 1;
+    resultMessage = '패배';
+  } else {
+    resultMessage = '무승부';
   }
-  $('#score').textContent = `${result}`;
+  $('#score').textContent = `${resultMessage} ${result}`;
 
   setTimeout(() => {
     // 클릭 후 1초 후에 실행
