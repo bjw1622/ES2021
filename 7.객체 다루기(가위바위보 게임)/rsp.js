@@ -38,15 +38,15 @@ let intervalId = setInterval(changeComputerHand, 50);
 // clickButton 연달아서 5번 호출, 1번 인터벌, 2번, 3번, 4번, 5번
 // intervalId에는 5번째꺼만 저장
 // 그 다음 버튼 클릭시에는 5번만 취소되고 1번, 2번, 3번, 4번은 계속 돌게 됨
+
+// 또 다른 방법으로 클릭 후 버튼 클릭이 안되도록 remove해주고 1초 후에 다시 addEventListner를 적용
 const clickButton = () => {
   // 클릭 하자마자 실행
   clearInterval(intervalId);
-  console.log(intervalId);
   setTimeout(() => {
     // 클릭 후 1초 후에 실행
     // 비동기 코드는 항상 조심해야 함.
     clearInterval(intervalId);
-    console.log(intervalId);
     intervalId = setInterval(changeComputerHand, 50);
   }, 1000);
 };
