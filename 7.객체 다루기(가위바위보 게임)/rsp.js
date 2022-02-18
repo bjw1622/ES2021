@@ -34,9 +34,19 @@ let intervalId = setInterval(changeComputerHand, 50);
 
 // 연달아 클릭하면 setTimeout이 여러번 실행
 // setTimeout은 아무도 클리어를 하지 않는다
+
+// clickButton 연달아서 5번 호출, 1번 인터벌, 2번, 3번, 4번, 5번
+// intervalId에는 5번째꺼만 저장
+// 그 다음 버튼 클릭시에는 5번만 취소되고 1번, 2번, 3번, 4번은 계속 돌게 됨
 const clickButton = () => {
+  // 클릭 하자마자 실행
   clearInterval(intervalId);
-  let setId = setTimeout(() => {
+  console.log(intervalId);
+  setTimeout(() => {
+    // 클릭 후 1초 후에 실행
+    // 비동기 코드는 항상 조심해야 함.
+    clearInterval(intervalId);
+    console.log(intervalId);
     intervalId = setInterval(changeComputerHand, 50);
   }, 1000);
 };
