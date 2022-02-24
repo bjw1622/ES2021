@@ -4,8 +4,7 @@ const $ = selector => {
 
 let startTime;
 let endTime;
-let total = 0;
-let count = 0;
+let result = [];
 let timer;
 $('#screen').addEventListener('click', event => {
   //대기 화면
@@ -33,11 +32,21 @@ $('#screen').addEventListener('click', event => {
     // 끝 시간 재기
     endTime = new Date().getTime();
     let diff = endTime - startTime;
-    total += diff;
-    count += 1;
+    result.push(diff);
+    let total = result.reduce((a, b) => {
+      return a + b;
+    });
     startTime = null;
     endTime = null;
-    $('#result').textContent = `현재 ${diff}ms, 평균:${total / count}ms`;
+    let sortResult = result.sort((a, b) => a - b);
+    $('#result').textContent = `현재 ${diff}ms, 평균:${
+      total / result.length
+    }ms`;
+    console.log(sortResult);
+    sortResult.forEach((a, b) => {
+      $('#result').append(document.createElement('br'), `${b + 1}위: ${a}`);
+    });
+
     $('#screen').classList.replace('now', 'waiting');
     $('#screen').textContent = '클릭해서 시작하세요.';
   }
