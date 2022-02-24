@@ -6,7 +6,7 @@ let startTime;
 let endTime;
 let total = 0;
 let count = 0;
-
+let timer;
 $('#screen').addEventListener('click', event => {
   //대기 화면
   if (event.target.classList.contains('waiting')) {
@@ -14,7 +14,7 @@ $('#screen').addEventListener('click', event => {
     // $('#screen').classList.add('ready');
     $('#screen').classList.replace('waiting', 'ready');
     $('#screen').textContent = '초록색이 되면 클릭하세요';
-    setTimeout(() => {
+    timer = setTimeout(() => {
       $('#screen').classList.replace('ready', 'now');
       $('#screen').textContent = '클릭하세요!!';
       // 시작 시간 재기
@@ -25,6 +25,8 @@ $('#screen').addEventListener('click', event => {
   else if (event.target.classList.contains('ready')) {
     $('#screen').classList.replace('ready', 'waiting');
     $('#screen').textContent = '성급하게 클릭했습니다. ';
+    // 필요없을때는 항상 확인 후 제거하기
+    timer.clearTimeout;
   }
   //클릭 화면
   else if (event.target.classList.contains('now')) {
