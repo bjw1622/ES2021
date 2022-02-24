@@ -6,6 +6,7 @@ let startTime;
 let endTime;
 let total = 0;
 let count = 0;
+
 $('#screen').addEventListener('click', event => {
   //대기 화면
   if (event.target.classList.contains('waiting')) {
@@ -32,7 +33,8 @@ $('#screen').addEventListener('click', event => {
     let diff = endTime - startTime;
     total += diff;
     count += 1;
-    console.log(total, diff);
+    startTime = null;
+    endTime = null;
     $('#result').textContent = `현재 ${diff}ms, 평균:${total / count}ms`;
     $('#screen').classList.replace('now', 'waiting');
     $('#screen').textContent = '클릭해서 시작하세요.';
