@@ -28,6 +28,22 @@ const $result = document.createElement('div');
 
 let turn = 'O';
 const rows = [];
+const callback = event => {
+  // 칸에 글자가 있나?
+  if (event.target.textContent) {
+    return;
+  }
+  event.target.textContent = turn;
+  // 승부 확인
+
+  // 턴 넘기기
+  if (turn === 'O') {
+    turn = 'X';
+  } else if (turn === 'X') {
+    turn = 'O';
+  }
+  cells.push(event.target.textContent);
+};
 // 2차원 배열 그리기
 $('body').append(document.createElement('table'));
 for (let i = 0; i < 3; i++) {
@@ -35,26 +51,10 @@ for (let i = 0; i < 3; i++) {
   const $tr = document.createElement('tr');
   for (let j = 0; j < 3; j++) {
     const $td = document.createElement('td');
-    $td.addEventListener('click', event => {
-      // 칸에 글자가 있나?
-      if (event.target.textContent) {
-        return;
-      }
-      event.target.textContent = turn;
-      // 승부 확인
-
-      // 턴 넘기기
-      if (turn === 'O') {
-        turn = 'X';
-      } else if (turn === 'X') {
-        turn = 'O';
-      }
-      cells.push(event.target.textContent);
-    });
+    $td.addEventListener('click', callback);
     $tr.append($td);
   }
   rows.push(cells);
   $('table').append($tr);
 }
 $('body').append($result);
-console.log(rows);
