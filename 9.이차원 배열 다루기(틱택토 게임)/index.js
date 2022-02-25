@@ -28,9 +28,10 @@ const $result = document.createElement('div');
 const $table = document.createElement('table');
 let turn = 'O';
 const rows = [];
-
+let count = 0;
 // 승부 확인 function
 const checkWinner = function (target) {
+  count += 1;
   let rowIndex;
   let cellIndex;
   // 클릭한 가로 세로 인덱스 가져오기
@@ -89,6 +90,12 @@ const callback = event => {
     $table.removeEventListener('click', callback);
     return;
   }
+  // 무승부 일떄
+  if (count === 9) {
+    $result.textContent = `무승부 입니다.`;
+    $table.removeEventListener('click', callback);
+    return;
+  }
   // 턴 넘기기
   turn = turn === 'O' ? 'X' : 'O';
 };
@@ -106,5 +113,5 @@ for (let i = 0; i < 3; i++) {
   $table.append($tr);
   $table.addEventListener('click', callback);
 }
-$('body').append($result);
 $('body').append($table);
+$('body').append($result);
