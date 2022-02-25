@@ -16,11 +16,10 @@ for (let i = 0; i < 3; i++) {
     const $td = document.createElement('td');
     $td.addEventListener('click', event => {
       // 칸에 글자가 있나?
-      if (event.target.textContent === '') {
-        event.target.textContent = turn;
-      } else {
-        alert('중복 입력입니다.');
+      if (event.target.textContent) {
+        return;
       }
+      event.target.textContent = turn;
       // 승부 확인
 
       // 턴 넘기기
