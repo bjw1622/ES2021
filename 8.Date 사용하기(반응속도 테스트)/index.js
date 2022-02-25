@@ -46,7 +46,7 @@ $('#screen').addEventListener('click', event => {
     sortResult.forEach((a, b) => {
       $('#result').append(document.createElement('br'), `${b + 1}위: ${a}`);
     });
-
+    debugger;
     $('#screen').classList.replace('now', 'waiting');
     $('#screen').textContent = '클릭해서 시작하세요.';
   }
