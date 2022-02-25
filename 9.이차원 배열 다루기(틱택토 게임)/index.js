@@ -1,7 +1,9 @@
 const $ = selector => {
   return document.querySelector(selector);
 };
+
 const data = [];
+const $result = document.createElement('div');
 
 let turn = 'O';
 for (let i = 0; i < 3; i++) {
@@ -33,3 +35,4 @@ for (let i = 0; i < 3; i++) {
   }
   $('table').append($tr);
 }
+$('body').append($result);
