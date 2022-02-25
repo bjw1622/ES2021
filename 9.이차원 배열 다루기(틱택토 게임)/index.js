@@ -10,6 +10,29 @@ for (let i = 0; i < 3; i++) {
   data.push([]);
 }
 
+/* 구조 분해 할당
+  
+1.객체 내부의 속성과 할당하는 변수명이 같을 떄
+  ex) const body = document.body
+  => const {body} = document
+  
+  ex) const body = document.body
+      const createElement = document.createElement
+  => const {body, createElement} = document
+
+2. 배열 구조 분해 할당
+  ex) const arr = [1,2,3]
+  const one = arr[0]
+  const two = arr[1]
+  const three = arr[2]
+  => const {one, two, three} = arr
+
+  ex) const arr = [1,2,3]
+  const one = arr[0]
+  const three = arr[2]
+  => const {one,,three} = arr
+
+*/
 // 2차원 배열 그리기
 $('body').append(document.createElement('table'));
 for (let i = 0; i < 3; i++) {
