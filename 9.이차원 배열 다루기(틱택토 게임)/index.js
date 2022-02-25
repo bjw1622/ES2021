@@ -37,11 +37,7 @@ const callback = event => {
   // 승부 확인
 
   // 턴 넘기기
-  if (turn === 'O') {
-    turn = 'X';
-  } else if (turn === 'X') {
-    turn = 'O';
-  }
+  turn = turn === 'O' ? 'X' : 'O';
   cells.push(event.target.textContent);
 };
 // 2차원 배열 그리기
