@@ -23,11 +23,60 @@ const $ = selector => {
 };
 
 // 구조 분해 할당
-const { body, createElement } = document;
+const { body } = document;
 const $result = document.createElement('div');
-
+const $table = document.createElement('table');
 let turn = 'O';
 const rows = [];
+
+// 승부 확인 function
+const checkWinner = function (target) {
+  let rowIndex;
+  let cellIndex;
+  // 클릭한 가로 세로 인덱스 가져오기
+  rows.forEach((row, i) => {
+    row.forEach((cell, j) => {
+      if (target === cell) {
+        rowIndex = i;
+        cellIndex = j;
+        console.log(rowIndex, cellIndex);
+      }
+    });
+  });
+  let hasWinner = false;
+  // 가로
+  if (
+    rows[rowIndex][0].textContent === turn &&
+    rows[rowIndex][1].textContent === turn &&
+    rows[rowIndex][2].textContent === turn
+  ) {
+    hasWinner = true;
+  }
+  // 세로
+  if (
+    rows[0][cellIndex].textContent === turn &&
+    rows[1][cellIndex].textContent === turn &&
+    rows[2][cellIndex].textContent === turn
+  ) {
+    hasWinner = true;
+  }
+  // 대각선
+  if (
+    rows[0][0].textContent === turn &&
+    rows[1][1].textContent === turn &&
+    rows[2][2].textContent === turn
+  ) {
+    hasWinner = true;
+  }
+  if (
+    rows[0][2].textContent === turn &&
+    rows[1][1].textContent === turn &&
+    rows[2][0].textContent === turn
+  ) {
+    hasWinner = true;
+  }
+  return hasWinner;
+};
 const callback = event => {
   // 칸에 글자가 있나?
   if (event.target.textContent) {
@@ -35,22 +84,27 @@ const callback = event => {
   }
   event.target.textContent = turn;
   // 승부 확인
-
+  if (checkWinner(event.target)) {
+    $result.textContent = `${turn}이 승리했습니다.`;
+    $table.removeEventListener('click', callback);
+    return;
+  }
   // 턴 넘기기
   turn = turn === 'O' ? 'X' : 'O';
-  cells.push(event.target.textContent);
 };
+
 // 2차원 배열 그리기
-$('body').append(document.createElement('table'));
 for (let i = 0; i < 3; i++) {
   const cells = [];
   const $tr = document.createElement('tr');
   for (let j = 0; j < 3; j++) {
     const $td = document.createElement('td');
-    $td.addEventListener('click', callback);
     $tr.append($td);
+    cells.push($td);
   }
   rows.push(cells);
-  $('table').append($tr);
+  $table.append($tr);
+  $table.addEventListener('click', callback);
 }
 $('body').append($result);
+$('body').append($table);
