@@ -4,10 +4,6 @@
   ex) const body = document.body
   => const {body} = document
   
-  ex) const body = document.body
-      const createElement = document.createElement
-  => const {body, createElement} = document
-
 2. 배열 구조 분해 할당
   ex) const arr = [1,2,3]
   const one = arr[0]
@@ -28,24 +24,14 @@ const $ = selector => {
 
 // 구조 분해 할당
 const { body, createElement } = document;
-const data = [];
 const $result = document.createElement('div');
 
 let turn = 'O';
-/*
-  data = [
-    [null, null, null],
-    [null, null, null],
-    [null, null, null],
-  ]
- */
-for (let i = 0; i < 3; i++) {
-  data.push([]);
-}
-
+const rows = [];
 // 2차원 배열 그리기
 $('body').append(document.createElement('table'));
 for (let i = 0; i < 3; i++) {
+  const cells = [];
   const $tr = document.createElement('tr');
   for (let j = 0; j < 3; j++) {
     const $td = document.createElement('td');
@@ -63,9 +49,12 @@ for (let i = 0; i < 3; i++) {
       } else if (turn === 'X') {
         turn = 'O';
       }
+      cells.push(event.target.textContent);
     });
     $tr.append($td);
   }
+  rows.push(cells);
   $('table').append($tr);
 }
 $('body').append($result);
+console.log(rows);
