@@ -1,15 +1,3 @@
-const $ = selector => {
-  return document.querySelector(selector);
-};
-
-const data = [];
-const $result = document.createElement('div');
-
-let turn = 'O';
-for (let i = 0; i < 3; i++) {
-  data.push([]);
-}
-
 /* 구조 분해 할당
   
 1.객체 내부의 속성과 할당하는 변수명이 같을 떄
@@ -33,6 +21,28 @@ for (let i = 0; i < 3; i++) {
   => const {one,,three} = arr
 
 */
+
+const $ = selector => {
+  return document.querySelector(selector);
+};
+
+// 구조 분해 할당
+const { body, createElement } = document;
+const data = [];
+const $result = document.createElement('div');
+
+let turn = 'O';
+/*
+  data = [
+    [null, null, null],
+    [null, null, null],
+    [null, null, null],
+  ]
+ */
+for (let i = 0; i < 3; i++) {
+  data.push([]);
+}
+
 // 2차원 배열 그리기
 $('body').append(document.createElement('table'));
 for (let i = 0; i < 3; i++) {
