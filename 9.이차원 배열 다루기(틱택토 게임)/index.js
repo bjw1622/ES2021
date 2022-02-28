@@ -31,6 +31,9 @@ const rows = [];
 let count = 0;
 // 승부 확인 function
 const checkWinner = function (target) {
+  // console.log(target.parentNode.rowIndex);
+  // console.log(target.cellIndex);
+  // console.log(target.parentNode.rowIndex, target.cellIndex);
   count += 1;
   let rowIndex;
   let cellIndex;
@@ -40,7 +43,6 @@ const checkWinner = function (target) {
       if (target === cell) {
         rowIndex = i;
         cellIndex = j;
-        console.log(rowIndex, cellIndex);
       }
     });
   });
