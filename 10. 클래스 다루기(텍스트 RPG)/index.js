@@ -41,6 +41,7 @@ $('#game-menu').addEventListener('submit', event => {
     $('#game-menu').style.display = 'none';
     $('#battle-menu').style.display = 'block';
     // 깊은 복사를 하는 이유는 값이 변경되길 원하지 않기 떄문이다.(객체의 정보만 가져오기)
+    // Json.parse(Json.stringfy(arr))
     // 참조는 둘 중 하나만 바꿔도 값이 다 변경 === false
     // 복사는 값이 같이 변경이 안된다. === true
 
