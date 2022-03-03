@@ -14,7 +14,7 @@ const hero = {
   // this가 function에서는 객체 자기 자신을 나타냄
   // arrow function에서는 window를 나타낸다.
   // this를 쓸때는 화살표 함수 말고 function 사용하기
-  attack(monster) {
+  attack: function (monster) {
     monst.hp -= this.att;
     this.hp -= monster.att;
   },
@@ -81,8 +81,13 @@ $('#game-menu').addEventListener('submit', event => {
 
 $('#battle-menu').addEventListener('submit', event => {
   const input = event.target['battle-input'].value;
+  // 공격
   if (input === '1') {
-  } else if (input === '2') {
-  } else if (input === '3') {
+  }
+  // 회복
+  else if (input === '2') {
+  }
+  // 도망
+  else if (input === '3') {
   }
 });
