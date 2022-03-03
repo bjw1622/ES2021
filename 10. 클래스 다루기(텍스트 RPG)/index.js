@@ -10,6 +10,18 @@ const hero = {
   hp: 100,
   xp: 0,
   att: 10,
+
+  // this가 function에서는 객체 자기 자신을 나타냄
+  // arrow function에서는 window를 나타낸다.
+  // this를 쓸때는 화살표 함수 말고 function 사용하기
+  attack(monster) {
+    monst.hp -= this.att;
+    this.hp -= monster.att;
+  },
+  heal(monster) {
+    this.hp += 20;
+    this.hp -= monster.att;
+  },
 };
 
 let monster = null;
