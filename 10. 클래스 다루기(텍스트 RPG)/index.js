@@ -94,6 +94,7 @@ $('#battle-menu').addEventListener('submit', event => {
       '#message'
     ).textContent = `${hero.att}의 데미지를 주고 ${monster.att}의 데미지를 받았다`;
   }
+
   // 회복
   else if (input === '2') {
   }
