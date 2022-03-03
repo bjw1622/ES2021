@@ -40,14 +40,19 @@ $('#game-menu').addEventListener('submit', event => {
   if (input === '1') {
     $('#game-menu').style.display = 'none';
     $('#battle-menu').style.display = 'block';
-    // 깊은 복사를 하는 이유는 값이 변경되길 원하지 않기 떄문이다.
+    // 깊은 복사를 하는 이유는 값이 변경되길 원하지 않기 떄문이다.(객체의 정보만 가져오기)
     // 참조는 둘 중 하나만 바꿔도 값이 다 변경 === false
     // 복사는 값이 같이 변경이 안된다. === true
+
+    //Math.floor(Math.random() * 배열의 길이) => 랜덤으로 배열의 범위 안 값 추출
     monster = JSON.parse(
       JSON.stringify(
         monsterList[Math.floor(Math.random() * monsterList.length)]
       )
     );
+    // 얕은 복사
+    // const monster = {...monsterList[Math.floor(Math.random() * monsterList.length)]};
+    // const arr = [...arr[0]]
     monster.maxHp = monster.hp;
     $('#monster-name').textContent = monster.name;
     $('#monster-hp').textContent = `HP: ${monster.hp}/${monster.maxHp}`;
