@@ -29,6 +29,9 @@ const monsterList = [
   { name: '슬라임', hp: 25, att: 10, xp: 10 },
   { name: '스켈레톤', hp: 50, att: 15, xp: 20 },
   { name: '마왕', hp: 150, att: 35, xp: 50 },
+  function attack(hero) {
+    hero.hp -= this.att;
+  },
 ];
 // 이름 입력 후 화면 전환
 $('#start-screen').addEventListener('submit', event => {
@@ -83,6 +86,13 @@ $('#battle-menu').addEventListener('submit', event => {
   const input = event.target['battle-input'].value;
   // 공격
   if (input === '1') {
+    hero.attack(monster);
+    monster.attack(hero);
+    $('#hero-hp').textContent = `HP: ${hero.hp}/${hero.maxHp}`;
+    $('#monster-hp').textContent = `HP: ${monster.hp}/${monster.maxHp}`;
+    $(
+      '#message'
+    ).textContent = `${hero.att}의 데미지를 주고 ${monster.att}의 데미지를 받았다`;
   }
   // 회복
   else if (input === '2') {
