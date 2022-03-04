@@ -46,3 +46,9 @@ class Monster {
 }
 
 let game = null;
+$('#start-screnn').addEventListener('submit', event => {
+  event.preventDefault();
+  const name = event.target['name-input'].value;
+  // 컨스트럭터 실행
+  game = new Game(name);
+});
